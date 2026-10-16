@@ -1,2 +1,115 @@
-`<!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport"content="width=device-width, initial-scale=1.0"> <title>Standoff 2 Store</title> <style> * { box-sizing: border-box; } body { background-color: #1a1c22; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; padding-bottom: 80px; } /* Верхняя черная плашка */ .top-header { background-color: #0d0e12; padding: 15px 20px; display: flex; justify-content: center; align-items: center; position: relative; height: 60px; } .logo { font-size: 24px; font-weight: 900; letter-spacing: 1px; color: #fff; text-transform: uppercase; font-style: italic; } .logo span { color: #ffaa00; } .profile-icon { position: absolute; right: 20px; width: 32px; height: 32px; background: #3a3d46; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #8a8d96; font-size: 20px; cursor: pointer; } /* Вкладки меню */ .tabs-container { display: flex; justify-content: space-around; align-items: center; background-color: #14151a; padding: 12px 10px; height: 55px; border-bottom: 1px solid #23262d; } .tab-link { color: #a4a9b5; font-size: 13px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; padding: 8px 12px; } .tab-link .badge { background-color: #fff; color: #14151a; border-radius: 50%; padding: 1px 6px; font-size: 11px; margin-left: 4px; display: inline-block; vertical-align: middle; } .tab-link.active-btn { background-color: #fc6814; color: #fff; border-radius: 20px; padding: 8px 30px; text-align: center; } /* Сетка товаров */ .main-content { padding: 16px; max-width: 600px; margin: 0 auto; } .items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; } /* Карточка товара */ .gold-card { background: linear-gradient(180deg, #252a34 0%, #191c23 100%); border-radius: 16px; border: 1px solid #2e3442; padding: 20px 14px; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 250px; } .discount-tag { position: absolute; top: 12px; right: 12px; background-color: #ff3b30; color: #fff; font-size: 11px; font-weight: bold; padding: 3px 6px; border-radius: 6px; } /* Стилизованные слитки золота (emoji) */ .gold-image-box { margin-top: 15px; font-size: 55px; line-height: 1; filter: drop-shadow(0px 4px 10px rgba(255,170,0,0.2)); } /* Текст G 100 */ .gold-title { font-size: 26px; font-weight: 800; margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 6px; letter-spacing: 0.5px; } .gold-title .g-letter { color: #fca823; font-style: italic; } /* Кнопка с ценой */ .buy-button { width: 100%; background-color: #fca823; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; padding: 14px 0; cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 12px rgba(252,168,35,0.2); } .buy-button:hover { background-color: #e5931a; } /* Нижняя навигация */ .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background-color: #111216; height: 65px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #1f2129; z-index: 100; } .nav-item { color: #5b6171; font-size: 24px; cursor: pointer; padding: 10px; transition: color 0.2s; } .nav-item:hover, .nav-item.active-nav { color: #fff; } </style> </head> <body> <!-- ВЕРХНЯЯ ПАНЕЛЬ --> <divclass="top-header"> <div class="logo">Stand<span>off</span> 2</div> <div class="profile-icon">👤</div> </div> <!-- МЕНЮ ВКЛАДОК --> <div class="tabs-container"> <div class="tab-link">Battle Shop</div> <div class="tab-link">Акции <span class="badge">3</span></div> <divclass="tab-link active-btn">Gold</div> </div> <!-- КАТАЛОГ ТОВАРОВ --> <div class="main-content"> <div class="items-grid"> <!-- G 100 --> <div class="gold-card"> <div class="gold-image-box">🪙</div> <div class="gold-title"><span class="g-letter">G</span> 100</div> <buttonclass="buy-button">119 ₽</button> </div> <!-- G 500 --> <div class="gold-card">
-<spanclass="discount-tag">-15%</span> <div class="gold-image-box">🪙🪙</div> <div class="gold-title"><span class="g-letter">G</span> 500</div> <button class="buy-button">499 ₽</button> </div> <!-- G 1000 --> <div class="gold-card"> <span class="discount-tag">-25%</span> <divclass="gold-image-box">👑🪙</div> <div class="gold-title"><span class="g-letter">G</span> 1000</div> <button class="buy-button">899 ₽</button> </div> <!-- G 3000 --> <div class="gold-card"> <span class="discount-tag">-45%</span> <div class="gold-image-box">💰️🪙</div> <divclass="gold-title"><span class="g-letter">G</span> 3000</div> <button class="buy-button">1999 ₽</button> </div> </div> </div> <!-- НИЖНЯЯ ПАНЕЛЬ НАВИГАЦИИ --> <div class="bottom-nav"> <div class="nav-item active-nav">🏠️</div> <div class="nav-item">🎟️</div> <div class="nav-item">🛒</div> <div class="nav-item">🎁</div> <div class="nav-item">☰</div> </div> </body> </html>`
+.order-details { background-color: #14151a; padding: 20px; border-radius: 16px; margin-bottom: 25px; border: 1px solid #23262d; }
+        .player-info { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; border-bottom: 1px solid #23262d; padding-bottom: 15px; }
+        .avatar { width: 40px; height: 40px; background-color: #3a3d46; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .player-text div { font-size: 13px; color: #a4a9b5; }
+        .player-text strong { font-size: 16px; color: #fff; }
+
+        .info-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 15px; }
+        .info-row span { color: #a4a9b5; }
+        .info-row strong { color: #fff; }
+
+        .section-title { font-size: 13px; font-weight: bold; color: #a4a9b5; letter-spacing: 1px; margin: 25px 0 10px 0; text-transform: uppercase; }
+
+        /* Кнопки выбора оплаты */
+        .payment-methods { display: flex; gap: 12px; margin-bottom: 20px; }
+        .payment-card { flex: 1; background-color: #14151a; padding: 16px; border-radius: 12px; border: 2px solid #23262d; cursor: pointer; text-align: center; font-weight: bold; font-size: 15px; transition: 0.2s; }
+        .payment-card.active { border-color: #fc6814; color: #fff; background-color: rgba(252, 104, 20, 0.05); }
+
+        /* Поле ввода почты */
+        .email-input { width: 100%; background-color: #14151a; padding: 16px; border-radius: 12px; border: 1px solid #23262d; color: #fff; font-size: 15px; margin-bottom: 25px; outline: none; }
+        .email-input:focus { border-color: #fc6814; }
+
+        /* Главная кнопка действия */
+        .pay-btn { width: 100%; background-color: #fc6814; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; padding: 16px 0; cursor: pointer; transition: background 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .pay-btn:hover { background-color: #e2570b; }
+
+        /* Экран успеха */
+        .success-icon { font-size: 70px; color: #00ff66; margin-bottom: 20px; display: block; text-align: center; }
+        .success-text { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        .success-desc { text-align: center; color: #a4a9b5; font-size: 15px; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+
+    <!-- ЭКРАН 1: МАГАЗИН -->
+    <div id="shop-content" style="display: block;">
+        <div class="top-header">
+            <div class="logo">Stand<span>off</span> 2</div>
+            <div class="profile-icon">👤</div>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tab-link">Battle Shop</div>
+            <div class="tab-link">Акции <span class="badge">3</span></div>
+            <div class="tab-link active-btn">Gold</div>
+        </div>
+
+        <div class="main-content">
+            <div class="items-grid">
+                <div class="gold-card">
+                    <div class="gold-image-box">🪙</div>
+                    <div class="gold-title"><span class="g-letter">G</span> 100</div>
+                    <button class="buy-button" onclick="goToCheckout('G 100', 119)">119 ₽</button>
+                </div>
+
+                <div class="gold-card">
+                    <span class="discount-tag">-15%</span>
+                    <div class="gold-image-box">🪙🪙</div>
+                    <div class="gold-title"><span class="g-letter">G</span> 500</div>
+                    <button class="buy-button" onclick="goToCheckout('G 500', 499)">499 ₽</button>
+                </div>
+
+                <div class="gold-card">
+                    <span class="discount-tag">-25%</span>
+                    <div class="gold-image-box">👑🪙</div>
+                    <div class="gold-title"><span class="g-letter">G</span> 1000</div>
+                    <button class="buy-button" onclick="goToCheckout('G 1000', 899)">899 ₽</button>
+                </div>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Оплата заказа | Standoff 2</title>
+<style>
+* { box-sizing: border-box; }
+body { background-color: #1a1c22; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+
+/* Скрытие экранов по умолчанию */
+#shop-content, #checkout-content, #success-content { display: none; }
+
+/* Верхняя панель */
+.top-header { background-color: #0d0e12; padding: 15px 20px; display: flex; justify-content: center; align-items: center; position: relative; height: 60px; }
+.logo { font-size: 24px; font-weight: 900; letter-spacing: 1px; color: #fff; text-transform: uppercase; font-style: italic; }
+.logo span { color: #fca823; }
+.profile-icon { position: absolute; right: 20px; width: 32px; height: 32px; background: #3a3d46; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #8a8d96; font-size: 20px; cursor: pointer; }
+
+/* Вкладки */
+.tabs-container { display: flex; justify-content: space-around; align-items: center; background-color: #14151a; padding: 12px 10px; height: 55px; border-bottom: 1px solid #23262d; }
+.tab-link { color: #a4a9b5; font-size: 13px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; padding: 8px 12px; }
+.tab-link .badge { background-color: #fff; color: #14151a; border-radius: 50%; padding: 1px 6px; font-size: 11px; margin-left: 4px; display: inline-block; vertical-align: middle; }
+.tab-link.active-btn { background-color: #fc6814; color: #fff; border-radius: 20px; padding: 8px 30px; text-align: center; }
+
+/* Витрина */
+.main-content { padding: 16px; max-width: 600px; margin: 0 auto; }
+.items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+.gold-card { background: linear-gradient(180deg, #252a34 0%, #191c23 100%); border-radius: 16px; border: 1px solid #2e3442; padding: 20px 14px; text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 250px; }
+.discount-tag { position: absolute; top: 12px; right: 12px; background-color: #ff3b30; color: #fff; font-size: 11px; font-weight: bold; padding: 3px 6px; border-radius: 6px; }
+.gold-image-box { margin-top: 15px; font-size: 55px; line-height: 1; filter: drop-shadow(0px 4px 10px rgba(255,170,0,0.2)); }
+.gold-title { font-size: 26px; font-weight: 800; margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 6px; letter-spacing: 0.5px; }
+.gold-title .g-letter { color: #fca823; font-style: italic; }
+
+.buy-button { width: 100%; background-color: #fca823; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; padding: 14px 0; cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 12px rgba(252,168,35,0.2); }
+.buy-button:hover { background-color: #e5931a; }
+
+/* Нижний навбар */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background-color: #111216; height: 65px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #1f2129; z-index: 100; }
+.nav-item { color: #5b6171; font-size: 24px; cursor: pointer; padding: 10px; transition: color 0.2s; }
+.nav-item:hover, .nav-item.active-nav { color: #fff; }
+
+/* Экран оформления заказа */
+.order-container { padding: 30px 20px; max-width: 480px; margin: 0 auto; text-align: left; }
+.order-header { font-size: 28px; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; text-align: center; font-style: italic; }
+.order-header span { color: #fca823; }

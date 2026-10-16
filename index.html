@@ -1,1 +1,86 @@
-<!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport"content="width=device-width, initial-scale=1.0"> <title>Магазин Standoff 2</title> <style> body { background-color: #0f1115; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; } .shop-box { max-width: 400px; margin: 50px auto; background: #1a1c24; padding: 30px; border-radius: 15px; border: 1px solid #2a2f3a; box-shadow: 0 10px 30px rgba(0,0,0,0.5); } input { padding: 12px; width: 85%; margin-bottom: 20px; border-radius: 8px; border: 1px solid #3a3f4d; background: #0f1115; color: #fff; text-align: center; font-size: 16px; } button { padding: 12px 25px; background: #ffaa00; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; color: #0f1115; font-size: 16px; width: 90%; transition: 0.3s; } button:hover { background: #e69500; } /* Модальное окно (профиль игрока) */ .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; } .modal-content { background: #1a1c24; padding: 30px; border-radius: 15px; width: 350px; border: 1px solid #ffaa00; position: relative; } .close { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 24px; color: #888; } .success-text { color: #ffaa00; font-weight: bold; margin-bottom: 15px; display: block; } .player-info { background: #0f1115; padding: 15px; border-radius: 10px; margin-bottom: 20px; } </style> </head> <body> <div class="shop-box"> <h1>Авторизация</h1> <p>Введите ID игрока:</p> <input type="number" id="player-id" placeholder="Например: 98062435"> <br> <buttononclick="checkPlayer()">Найти ID</button> </div> <!-- Окно профиля --> <div id="player-modal"class="modal"> <div class="modal-content"> <span class="close" onclick="closeModal()">&times;</span> <span class="success-text">АККАУНТ ИГРОКА НАЙДЕН</span> <div class="player-info"> <p>ID: <span id="display-id"></span></p> </div> <button onclick="startShopping()">Начать покупки</button> </div> </div> <script> function checkPlayer() { let id = document.getElementById('player-id').value; if(id.length > 5) { document.getElementById('display-id').innerText = id; document.getElementById('player-modal').style.display = 'flex'; } else { alert("Введите корректный ID"); } } function closeModal() { document.getElementById('player-modal').style.display = 'none'; } function startShopping() { alert("Переход к магазину (скоро будет готово)"); // Здесь будет логика перехода к покупкам } </script> </body> </html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин Standoff 2</title>
+    <style>
+        body { background-color: #161821; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
+        .box { max-width: 450px; margin: 40px auto; background: #1f232e; padding: 30px; border-radius: 15px; border: 1px solid #2f3545; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        input { padding: 12px; width: 85%; margin-bottom: 20px; border-radius: 8px; border: none; background: #161821; color: #fff; text-align: center; font-size: 16px; }
+        button { padding: 14px 25px; background: #ffaa00; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; color: #161821; font-size: 16px; width: 90%; transition: 0.3s; }
+        button:hover { background: #e69500; }
+
+        /* Профиль игрока */
+        #player-card { display: none; background: #161821; padding: 20px; border-radius: 10px; margin-top: 20px; border: 1px solid #ffaa00; text-align: left; display: flex; align-items: center; gap: 15px; }
+        .avatar { width: 60px; height: 60px; background: #3a3f50; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+        .player-details strong { display: block; font-size: 18px; color: #fff; }
+        .player-details span { color: #ffaa00; font-size: 14px; }
+
+        /* Магазин */
+        #shop-content { display: none; max-width: 800px; margin: 40px auto auto; }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .item-card { background: #1f232e; padding: 20px; border-radius: 15px; border: 1px solid #2f3545; }
+        .gold-icon { font-size: 40px; margin: 10px 0; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="login-box">
+        <h1>Авторизация</h1>
+        <p>Введите ID игрока:</p>
+        <input type="number" id="player-id" placeholder="Например: 98062435">
+        <br>
+        <button onclick="findPlayer()">Найти</button>
+
+        <div id="player-card">
+            <div class="avatar">👤</div>
+            <div class="player-details">
+                <strong id="player-name">Игрок</strong>
+                <span>ID: <span id="player-num"></span></span>
+            </div>
+        </div>
+        <br>
+        <button id="start-btn" style="display:none; margin-top: 10px;" onclick="startShopping()">Начать покупки</button>
+    </div>
+
+    <div id="shop-content">
+        <h1>Магазин Standoff 2</h1>
+        <div class="items-grid">
+            <div class="item-card">
+                <span class="gold-icon">🪙</span>
+                <h3>500 Золота</h3>
+                <button onclick="buy(500)">Купить</button>
+            </div>
+            <div class="item-card">
+                <span class="gold-icon">🪙</span>
+                <h3>1000 Золота</h3>
+                <button onclick="buy(1000)">Купить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function findPlayer() {
+            let id = document.getElementById('player-id').value;
+            if(id.length > 5) {
+                document.getElementById('player-num').innerText = id;
+                document.getElementById('player-name').innerText = "HAVAL M6"; 
+                document.getElementById('player-card').style.display = 'flex';
+                document.getElementById('start-btn').style.display = 'inline-block';
+            } else {
+                alert("Введите корректный ID");
+            }
+        }
+
+        function startShopping() {
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('shop-content').style.display = 'block';
+        }
+function buy(amount) {
+            alert("Покупка " + amount + " золота успешно симулирована!");
+        }
+    </script>
+
+</body>
+</html>

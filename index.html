@@ -1,2 +1,42 @@
-class="card"> <div class="badge">-25%</div> <img src="https://postimg.cc"alt="gold" class="gold-img" onerror="this.src='https://placehold.co'"> <div class="gold-amount">1 000</div> <button class="buy-btn" onclick="buyGold(1000)">899 ₽</button> </div> <!-- 3000 Голды --> <div class="card"> <div class="badge">-45%</div> <imgsrc="https://postimg.cc" alt="gold" class="gold-img"onerror="this.src='https://placehold.co'"> <div class="gold-amount">3 000</div> <buttonclass="buy-btn" onclick="buyGold(3000)">1 999 ₽</button> </div> </div> <!-- Логика работы симулятора --> <script> // База данных фейковых игроков для симулятора const fakePlayers = {"77777": { name: "Sn1per_Pro", balance: 150 }, "12345": { name: "Standoff_King", balance: 50}, "99999": { name: "Бешеный_Нож", balance: 1200 }, "11111": { name: "M7_Master", balance: 0} }; let currentId = null; // Функция поиска игрока по ID function findPlayer() { const idInput = document.getElementById('player-id').value.trim(); if (idInput === "") { alert("Пожалуйста, введите ID!"); return; } currentId = idInput; document.getElementById('search-block').style.display = 'none'; document.getElementById('player-info').style.display = 'block'; // Если игрок есть в базе — берем его данные, если нет — генерируем случайный ник if (fakePlayers[idInput]) { document.getElementById('player-name').innerText = fakePlayers[idInput].name; document.getElementById('player-balance').innerText = fakePlayers[idInput].balance + " G"; } else { const randomNick = "Player_" + Math.floor(Math.random() * 9000 + 1000); fakePlayers[idInput] = { name: randomNick, balance: 0 }; document.getElementById('player-name').innerText = randomNick; document.getElementById('player-balance').innerText = "0 G"; } } // Функция "покупки" голды (начисления на баланс в симуляторе) function buyGold(amount) { if (!currentId) { alert("Сначала введите ID игрока вверху сайта!"); return; } // Начисляем голду fakePlayers[currentId].balance += amount; // Обновляем отображение баланса на экране с красивым уведомлением document.getElementById('player-balance').innerText = fakePlayers[currentId].balance + " G"; alert(Успешно! На аккаунт игрока ${fakePlayers[currentId].name} (ID: ${currentId}) зачислено ${amount} голды!); } </script> </body> </html>`
-`<!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport"content="width=device-width, initial-scale=1.0"> <title>Standoff 2 - Магазин (Симулятор)</title> <style> * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; } body { background-color: #121117; color: #fff; padding: 20px; display: flex; flex-direction: column; align-items: center; } /* Шапка сайта */ .header { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; } .logo { font-size: 24px; font-weight: bold; tracking-letter: 1px; color: #fff; } .logo span { color: #ff6b00; } /* Панель ID игрока */ .id-panel { background: #1a1921; padding: 15px; border-radius: 12px; width: 100%; max-width: 500px; margin-bottom: 20px; text-align: center; border: 1px solid #2d2b38; } .id-panel input { width: 70%; padding: 10px; border-radius: 6px; border: none; background: #262430; color: #fff; font-size: 16px; text-align: center; margin-right: 10px; } .id-panel button { padding: 10px 15px; border-radius: 6px; border: none; background: #ff6b00; color: #fff; font-weight: bold; cursor: pointer; } .player-info { margin-top: 10px; display: none; font-size: 16px; color: #a0a0a0; } .player-info strong { color: #fff; } /* Вкладки меню */ .menu-tabs { display: flex; width: 100%; max-width: 500px; justify-content: space-between; margin-bottom: 20px; border-bottom: 2px solid #2d2b38; padding-bottom: 10px; } .tab { color: #a0a0a0; font-size: 14px; font-weight: bold; text-transform: uppercase; cursor: pointer; } .tab.active { color: #fff; border-bottom: 2px solid #ff6b00; padding-bottom: 10px; margin-bottom: -12px; } /* Сетка товаров */ .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; max-width: 500px; } /* Карточка товара */ .card { background: #1c1b24; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; align-items: center; position: relative; border: 1px solid #2d2b38; } .badge { position: absolute; top: 10px; right: 10px; background: #ff3333; color: #fff; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 6px; } .gold-img { width: 80px; height: auto; margin: 15px 0; filter: drop-shadow(0px 0px 10px rgba(255, 184, 0, 0.3)); } .gold-amount { font-size: 22px; font-weight: bold; display: flex; align-items: center; gap: 5px; margin-bottom: 15px; } .gold-amount::before { content: 'G'; color: #ffb800; font-weight: 900; margin-right: 5px; } /* Кнопка купить */ .buy-btn { background: #ff6b00; color: #fff; width: 100%; text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 16px; border: none; cursor: pointer; transition: 0.2s; } .buy-btn:hover { background: #e05e00; } </style> </head> <body> <!-- Шапка --> <div class="header"> <divclass="logo">STAND<span>OFF</span> 2</div> <div style="font-size: 24px;">👤</div> </div> <!-- Ввод ID (Поиск игрока) --> <div class="id-panel"> <div id="search-block"> <inputtype="number" id="player-id" placeholder="Введите ID игрока (например, 12345)"> <buttononclick="findPlayer()">Найти</button> </div> <div class="player-info" id="player-info"> Игрок: <strong id="player-name">Загрузка...</strong> | Баланс: <strong id="player-balance"style="color: #ffb800;">0 G</strong> </div> </div> <!-- Меню категорий --> <div class="menu-tabs"> <div class="tab">BATTLE SHOP</div> <div class="tab">АКЦИИ <span>3</span></div> <divclass="tab active">GOLD</div> </div> <!-- Витрина доната --> <div class="grid"> <!-- 100 Голды --> <div class="card"> <img src="https://postimg.cc" alt="gold" class="gold-img"onerror="this.src='https://placehold.co'"> <div class="gold-amount">100</div> <buttonclass="buy-btn" onclick="buyGold(100)">119 ₽</button> </div> <!-- 500 Голды --> <divclass="card"> <div class="badge">-15%</div> <img src="https://postimg.cc" alt="gold"class="gold-img" onerror="this.src='https://placehold.co'"> <div class="gold-amount">500</div> <button class="buy-btn" onclick="buyGold(500)">499 ₽</button> </div> <!-- 1000 Голды --> <div
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standoff 2 Shop Simulator</title>
+    <style>
+        /* Здесь позже будут красивые стили оформления */
+        body { background-color: #0f1115; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
+        .shop-box { max-width: 600px; margin: 0 auto; background: #161920; padding: 20px; border-radius: 10px; border: 1px solid #2a2f3a; }
+        input { padding: 10px; width: 80%; margin-bottom: 20px; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; background: #ffaa00; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="shop-box">
+        <h1>Магазин Standoff 2 (Симулятор)</h1>
+
+        <!-- Блок ввода ID -->
+        <p>Введите ID игрока для проверки:</p>
+        <input type="number" id="player-id" placeholder="Например: 12345678">
+        <br>
+        <button onclick="checkPlayer()">Проверить ID</button>
+
+        <p id="status-text" style="color: #ffaa00; margin-top: 15px;"></p>
+    </div>
+
+    <script>
+        // Здесь позже будет логика покупок и поиска игрока
+        function checkPlayer() {
+            let id = document.getElementById('player-id').value;
+            if(id.length > 5) {
+                document.getElementById('status-text').innerText = "Игрок " + id + " успешно найден!";
+            } else {
+                document.getElementById('status-text').innerText = "Введите корректный ID (более 5 цифр)";
+            }
+        }
+    </script>
+
+</body>
+</html>
